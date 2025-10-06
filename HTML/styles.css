@@ -2,3 +2,10 @@ body {
   color: whitesmoke;
   background-color: black;
 }
+
+table, tr, td, caption {
+  border: 1px solid #eee;
+  font-family: arial;
+  border-collapse: collapse;
+  padding: 0.5rem
+}
