@@ -47,3 +47,10 @@
 - 🔗 [MDN: Form Element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form)
 
 ---
+
+![Satrap's GitHub stats](https://github-readme-stats.vercel.app/api?username=Satrap18&show_icons=true&count_private=true&include_all_commits=true&bg_color=000000&title_color=00D3A9&icon_color=00D3A9&text_color=cdc9b9&border_color=101010&cache_seconds=3600&v=2)
+
+
+![Satrap's GitHub stats](https://github-readme-stats.vercel.app/api?username=Satrap18&show_icons=true&count_private=true&bg_color=000000&title_color=00D3A9&icon_color=00D3A9&text_color=cdc9b9&border_color=101010)
+
+
