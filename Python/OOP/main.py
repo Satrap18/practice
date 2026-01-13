@@ -35,22 +35,48 @@
 
 # the first step of learning is over #
 
-class Light:
+# class Light:
 
-    def __init__(self):
-        self.on = False
+#     def __init__(self):
+#         self.on = False
     
-    def toggle(self):
-        self.on = not self.on
-        print(self.on)
+#     def toggle(self):
+#         self.on = not self.on
+#         print(self.on)
     
-    def is_on(self):
-        if self.on == False:
-            print('light is off!')
-        else:
-            print('light is on!')
+#     def is_on(self):
+#         if self.on == False:
+#             print('light is off!')
+#         else:
+#             print('light is on!')
 
 
-light = Light()
-light.toggle()
-light.is_on()
+# light = Light()
+# light.toggle()
+# light.is_on()
+
+# the second step of learning is over #
+
+# class Light:
+
+#     on = False
+
+# a = Light()
+# b = Light()
+
+# a.on = True
+
+# print(a.on)
+# print(b.on)
+
+# Light.on = True 
+
+# print(a.on)
+# print(b.on)
+
+# Light.on = False 
+
+# print(b.on)
+# print(a.on)
+
+# the third stage of learning is over #
