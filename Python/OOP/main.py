@@ -32,3 +32,25 @@
 # print(ice_cream.scoops)
 # ice_cream.add(3)
 # print(ice_cream.scoops)
+
+# the first step of learning is over #
+
+class Light:
+
+    def __init__(self):
+        self.on = False
+    
+    def toggle(self):
+        self.on = not self.on
+        print(self.on)
+    
+    def is_on(self):
+        if self.on == False:
+            print('light is off!')
+        else:
+            print('light is on!')
+
+
+light = Light()
+light.toggle()
+light.is_on()
