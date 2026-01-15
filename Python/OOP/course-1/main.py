@@ -213,3 +213,45 @@
 # print(data)
 
 # the sixth stage of learning is over #
+
+# class Light:
+
+#     def __init__(self, sync=None):
+#         super().__init__()
+#         self.on = False
+#         self.sync = sync
+    
+#     def toggle(self):
+#         self.on = not self.on
+        
+#         if self.sync is not None:
+#             self.sync.toggle()
+    
+#     def is_on(self):
+#         if self.on == False:
+#             print('light is off!')
+#         else:
+#             print('light is on!')
+
+# class OldLight(Light):
+
+#     def __init__(self, sync=None):
+#         super().__init__(sync)
+
+#         self.on = False
+#         self.sync = sync
+#         self.filcker = False
+
+#     def toggle(self):
+#         super().toggle()
+#         if self.on:
+#             self.filcker = not self.filcker
+
+
+# light = OldLight()
+# print(light.filcker)
+# print(4 * "--")
+# light.toggle()
+# print(light.filcker)
+
+# the sventh stage of learning is over #
