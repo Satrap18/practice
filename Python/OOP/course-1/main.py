@@ -129,3 +129,32 @@
 # print(truck.sold)
 
 # the fourth stage of learning is over #
+
+class Light:
+
+    def __init__(self, sync=None):
+        self.on = False
+        self.sync = sync
+    
+    def toggle(self):
+        self.on = not self.on
+        
+        if self.sync is not None:
+            self.sync.toggle()
+
+        print(self.on)
+    
+    def is_on(self):
+        if self.on == False:
+            print('light is off!')
+        else:
+            print('light is on!')
+
+light1 = Light()
+light2 = Light(sync=light1)
+light2.toggle()
+
+light1.is_on()
+light2.is_on()
+
+# the fourth stage of learning is over #
