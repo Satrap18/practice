@@ -81,3 +81,51 @@
 
 # the third stage of learning is over #
 
+# class IceCream:
+
+#     max_scoops = 3
+
+#     def __init__(self):
+#         self.scoops = self.max_scoops
+
+#     def eat(self, scoops):
+#         if self.scoops < scoops:
+#             print('Sorry this is amount is missing!')
+#         else:
+#             self.scoops -= scoops
+
+#     def add(self, scoops):
+#         self.scoops += scoops
+
+#         if self.scoops > self.max_scoops:
+#             self.scoops = 0
+#             print('Too many scoops! dropped ice cream.')
+
+
+# class IceCreamTruck:
+
+#     min_sold = 0
+
+#     def __init__(self):
+
+#         self.sold = self.min_sold
+
+#     def order(self, scoops):
+#         ice_cream = IceCream()
+#         self.add(ice_cream, scoops)
+#         return ice_cream
+
+
+#     def add(self, ice_cream, scoops):
+        
+#         ice_cream.add(scoops)
+#         self.sold += scoops
+
+
+# truck = IceCreamTruck()
+# icecream = truck.order(3)
+# icecream.eat(2)
+# truck.add(icecream, 1)
+# print(truck.sold)
+
+# the fourth stage of learning is over #
