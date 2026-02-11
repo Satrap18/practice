@@ -28,3 +28,29 @@ print("Balance (SUN):", balance_sun)
 # show (TRX) balance account #
 balance_trx = balance_sun / 1_000_000
 print("Balance (TRX):", balance_trx)
+
+# send balance to another wallet #
+from_address = private_key.public_key.to_base58check_address()
+
+# create a new wallet address for send balance #
+dest_private_key = PrivateKey(os.urandom(32))
+to_address = dest_private_key.public_key.to_base58check_address()
+
+print("sending to:", to_address)
+
+amount = int(0.001 * 1_000_000)
+
+txn = (client.trx.transfer(from_address, to_address, amount).build().sign(private_key))
+
+result = txn.broadcast()
+
+print("Broadcast Result:", result)
+print("Transaction ID:", txn.txid)
+
+# confirmed = txn.wait()
+# print("Transaction Confirmed:", confirmed)
+
+
+balance_sun = client.get_account_balance(to_address)
+balance_trx = balance_sun / 1_000_000
+print("Destination Balance (TRX):", balance_trx)
