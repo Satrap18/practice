@@ -1,6 +1,6 @@
 from pyfiglet import Figlet
 from getpass import getpass
-import sqlite3
+from database import DataBase
 
 f = Figlet(font='slant')
 print(f.renderText('Wallet'))
@@ -16,6 +16,9 @@ print('''
 login_ = False
 username_ = ''
 
+main = DataBase()
+main.create_table()
+
 while True:
 
     option = input('Choose from the options: ')
@@ -30,17 +33,36 @@ while True:
             password = getpass('|')
             print('Confirm Password:')
             password_confirm = getpass('|')
+
+            if password == password_confirm:
+                if main.cheak_user(username) == username:
+                    print('This username already exists, please use another username.')
+                else:
+                    main.create_user(fullname=fullname, username=username, password=password)
+            else:
+                print('Password and password confirmation are not the same.')
         case '2':
             print('Username:')
             username = input('|')
             print('Password:')
             password = getpass('|')
+
+            data = main.login_user(username=username, password=password)
+
+            if data == username:
+                login_ = True
+                username_ = username
         case '3':
             if login_ == False:
                 print('Please login first')
+            elif login_ == True:
+                wallet = main.wallet_user(username_)
+                print(f"The wallet that needs to be paid is yours and is exclusive to you:\n{wallet}")
         case '4':
             if login_ == False:
                 print('Please login first')
+            elif login_ == True:
+                print('hi')
         case '5':
             exit()
         case _:
