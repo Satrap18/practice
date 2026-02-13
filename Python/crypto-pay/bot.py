@@ -62,7 +62,17 @@ while True:
             if login_ == False:
                 print('Please login first')
             elif login_ == True:
-                print('hi')
+                print('1-"1 trx" 30D ')
+                print('1-"2 trx" 60D ')
+                print('1-"3 trx" 90D ')
+                sub = input('Select Subscription:')
+                match sub:
+                    case '1':
+                        print('active 30D')
+                    case '2':
+                        print('active 60D')                    
+                    case '3':
+                        print('active 90D')                        
         case '5':
             exit()
         case _:
