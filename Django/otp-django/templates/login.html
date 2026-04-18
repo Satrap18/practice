@@ -1,12 +1,15 @@
 {% extends "base.html" %}
 
 
+
 {% block title %}
    login 
 {% endblock title %}
 
 
 {% block web_body %}
-   login Page 
+  {% csrf_token %}
+  {{ form }}
+  <button type='submit'>login</button>
 {% endblock web_body %}
-    
+   
