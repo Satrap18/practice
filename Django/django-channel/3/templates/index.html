@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Echo Server Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        #messages {
+            border: 1px solid #ccc;
+            height: 400px;
+            overflow-y: auto;
+            padding: 10px;
+            margin-bottom: 20px;
+            background-color: #f9f9f9;
+        }
+        .message {
+            margin: 10px 0;
+            padding: 8px;
+            border-radius: 5px;
+        }
+        .sent {
+            background-color: #e3f2fd;
+            color: #1976d2;
+        }
+        .received {
+            background-color: #e8f5e9;
+            color: #388e3c;
+        }
+        .system {
+            background-color: #fff3e0;
+            color: #f57c00;
+            font-style: italic;
+        }
+        #form {
+            display: flex;
+            gap: 10px;
+        }
+        #messageInput {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #status {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #e9ecef;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔄 WebSocket Echo Server Test</h1>
+    
+    <div id="status">
+        ⏳ Connecting to server...
+    </div>
+    
+    <div id="messages">
+        <div class="message system">💬 Welcome! Send a message to test the echo server.</div>
+    </div>
+    
+    <form id="form">
+        <input type="text" id="messageInput" placeholder="Type your message here..." autocomplete="off">
+        <button type="submit">Send</button>
+    </form>
+
+    <script>
+        // ✅ آدرس درست - مطابق با routing.py شما
+        const socketUrl = 'ws://127.0.0.1:8000/ws/web-socket/';
+        
+        // ایجاد اتصال WebSocket
+        const socket = new WebSocket(socketUrl);
+        
+        // المان‌های صفحه
+        const messagesDiv = document.getElementById('messages');
+        const statusDiv = document.getElementById('status');
+        const messageInput = document.getElementById('messageInput');
+        
+        // تابع اضافه کردن پیام به صفحه
+        function addMessage(text, type) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}`;
+            const time = new Date().toLocaleTimeString();
+            messageDiv.innerHTML = `<strong>[${time}]</strong> ${text}`;
+            messagesDiv.appendChild(messageDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+        
+        // رویداد: وقتی اتصال برقرار شد
+        socket.onopen = function() {
+            console.log('✅ WebSocket connected');
+            statusDiv.innerHTML = '✅ Connected to echo server';
+            statusDiv.style.backgroundColor = '#d4edda';
+            addMessage('Connected to echo server!', 'system');
+        };
+        
+        // رویداد: وقتی پیام دریافت شد
+        socket.onmessage = function(event) {
+            console.log('📩 Received:', event.data);
+            
+            // تلاش برای parse کردن JSON
+            try {
+                const data = JSON.parse(event.data);
+                if (data.type === 'connect') {
+                    addMessage(data.message, 'system');
+                } else {
+                    addMessage(`Server: ${event.data}`, 'received');
+                }
+            } catch (e) {
+                // اگه JSON نبود، همون متن رو نشون بده
+                addMessage(`Server: ${event.data}`, 'received');
+            }
+        };
+        
+        // رویداد: وقتی خطایی رخ داد
+        socket.onerror = function(error) {
+            console.error('❌ WebSocket error:', error);
+            statusDiv.innerHTML = '❌ Connection error!';
+            statusDiv.style.backgroundColor = '#f8d7da';
+            addMessage('Error connecting to server', 'system');
+        };
+        
+        // رویداد: وقتی اتصال بسته شد
+        socket.onclose = function() {
+            console.log('🔌 WebSocket disconnected');
+            statusDiv.innerHTML = '🔌 Disconnected from server';
+            statusDiv.style.backgroundColor = '#e2e3e5';
+            addMessage('Disconnected from server', 'system');
+        };
+        
+        // تابع ارسال پیام
+        function sendMessage() {
+            const message = messageInput.value.trim();
+            
+            if (message === '') {
+                alert('Please enter a message!');
+                return;
+            }
+            
+            if (socket.readyState !== WebSocket.OPEN) {
+                alert('WebSocket is not connected!');
+                return;
+            }
+            
+            // ارسال پیام به سرور
+            socket.send(message);
+            console.log('📤 Sent:', message);
+            
+            // نمایش پیام در صفحه
+            addMessage(`You: ${message}`, 'sent');
+            
+            // پاک کردن input
+            messageInput.value = '';
+            messageInput.focus();
+        }
+        
+        // هندل کردن submit فرم
+        const form = document.getElementById('form');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            sendMessage();
+        });
+        
+        // ارسال با کلید Enter (دوباره برای اطمینان)
+        messageInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>
