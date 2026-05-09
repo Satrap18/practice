@@ -1,0 +1,1 @@
+BASE_URL = 'https://botapi.rubika.ir/v3/{token}/'
