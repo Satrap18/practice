@@ -4,6 +4,7 @@ from api.models import UserProfile
 from api.serializers import UserProfileSerializers, CreateUserProfileSerializers
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.generics import ListAPIView, CreateAPIView, DestroyAPIView, UpdateAPIView
 # Create your views here.
 
 class UserProfileViws(APIView):
@@ -40,3 +41,26 @@ class UserProfileViws(APIView):
         models_data.delete()
         
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
+    
+class ListUserProfileView(ListAPIView):
+    
+    queryset = UserProfile.objects.all()
+    serializer_class = UserProfileSerializers
+    # permission_classes = (IsAuthenticated,)
+    
+class CreateUserProfileView(CreateAPIView):
+    
+    queryset = UserProfile.objects.all()
+    serializer_class = CreateUserProfileSerializers
+
+class UpdateUserProfileView(UpdateAPIView):
+    
+    queryset = UserProfile.objects.all()
+    serializer_class = UserProfileSerializers
+    lookup_field = "id"
+
+class DeleteUserProfileView(DestroyAPIView):
+    
+    queryset = UserProfile.objects.all()
+    lookup_field = "id"
