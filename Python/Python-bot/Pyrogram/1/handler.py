@@ -3,6 +3,7 @@ from pyrogram import filters
 # ذخیره وضعیت هر کاربر
 user_state = {}
 
+
 def setup_handlers(app):
 
     @app.on_message(filters.command("start"))
@@ -11,16 +12,10 @@ def setup_handlers(app):
         user_id = message.from_user.id
 
         # مقدار اولیه state کاربر
-        user_state[user_id] = {
-            "step": "num1",
-            "num1": None,
-            "sigh": None,
-            "num2": None
-        }
+        user_state[user_id] = {"step": "num1", "num1": None, "sigh": None, "num2": None}
 
         await client.send_message(
-            message.chat.id,
-            "درود، خوش اومدی.\nعدد اول را بفرست:"
+            message.chat.id, "درود، خوش اومدی.\nعدد اول را بفرست:"
         )
 
     @app.on_message(filters.text & ~filters.command("start"))
@@ -36,7 +31,7 @@ def setup_handlers(app):
                 "step": "num1",
                 "num1": None,
                 "sigh": None,
-                "num2": None
+                "num2": None,
             }
             await client.send_message(chat_id, "عدد اول را بفرست:")
             return
@@ -58,7 +53,9 @@ def setup_handlers(app):
         # ۲. دریافت sigh
         elif state["step"] == "sigh":
             if text not in ["+", "-", "*", "/"]:
-                await client.send_message(chat_id, "لطفاً فقط یکی از این‌ها را بفرست: + - * /")
+                await client.send_message(
+                    chat_id, "لطفاً فقط یکی از این‌ها را بفرست: + - * /"
+                )
                 return
 
             state["sigh"] = text
@@ -100,7 +97,7 @@ def setup_handlers(app):
                 "step": "num1",
                 "num1": None,
                 "sigh": None,
-                "num2": None
+                "num2": None,
             }
 
             await client.send_message(chat_id, "برای محاسبه جدید، عدد اول را بفرست.")

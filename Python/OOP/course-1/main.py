@@ -1,5 +1,5 @@
 # class IceCream:
-    
+
 #     def __init__(self):
 #         self.scoops = 3
 
@@ -39,11 +39,11 @@
 
 #     def __init__(self):
 #         self.on = False
-    
+
 #     def toggle(self):
 #         self.on = not self.on
 #         print(self.on)
-    
+
 #     def is_on(self):
 #         if self.on == False:
 #             print('light is off!')
@@ -69,12 +69,12 @@
 # print(a.on)
 # print(b.on)
 
-# Light.on = True 
+# Light.on = True
 
 # print(a.on)
 # print(b.on)
 
-# Light.on = False 
+# Light.on = False
 
 # print(b.on)
 # print(a.on)
@@ -117,7 +117,7 @@
 
 
 #     def add(self, ice_cream, scoops):
-        
+
 #         ice_cream.add(scoops)
 #         self.sold += scoops
 
@@ -135,15 +135,15 @@
 #     def __init__(self, sync=None):
 #         self.on = False
 #         self.sync = sync
-    
+
 #     def toggle(self):
 #         self.on = not self.on
-        
+
 #         if self.sync is not None:
 #             self.sync.toggle()
 
 #         print(self.on)
-    
+
 #     def is_on(self):
 #         if self.on == False:
 #             print('light is off!')
@@ -181,13 +181,12 @@
 #             self.scoops = 0
 
 
-
 # class IceCreamTruck:
 
 #     def __init__(self):
 #         super().__init__()
 #         self.sold = 0
- 
+
 #     def order(self, scoops):
 #         ice_cream = IceCream()
 #         self.add(ice_cream, scoops)
@@ -195,9 +194,9 @@
 
 
 #     def add(self, ice_cream, scoops):
-        
+
 #         ice_cream.add(scoops)
-#         self.sold += scoops 
+#         self.sold += scoops
 
 # class DeluxeIceCreamTruck(IceCreamTruck):
 
@@ -205,7 +204,7 @@
 #         ice_cream = super().order(scoops)
 #         ice_cream.add(1)
 #         return ice_cream
-    
+
 # truck = DeluxeIceCreamTruck()
 # ice_cream  = truck.order(2)
 # print(ice_cream.scoops)
@@ -220,13 +219,13 @@
 #         super().__init__()
 #         self.on = False
 #         self.sync = sync
-    
+
 #     def toggle(self):
 #         self.on = not self.on
-        
+
 #         if self.sync is not None:
 #             self.sync.toggle()
-    
+
 #     def is_on(self):
 #         if self.on == False:
 #             print('light is off!')

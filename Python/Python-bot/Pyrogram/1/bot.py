@@ -7,6 +7,7 @@ MESSAGE = "{} Welcome to [Pyrogram](https://docs.pyrogram.org/)'s group chat {}!
 
 TARGET = -4756620381
 
+
 @app.on_message(filters.chat(TARGET) & filters.new_chat_members)
 async def welcome(client, message):
     # Build the new members list (with mentions) by using their first_name
