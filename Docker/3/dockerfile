@@ -1,0 +1,9 @@
+from python:3.12-slim
+
+workdir /project
+
+copy . .
+
+RUN pip install --no-cache-dir -i https://mirror-pypi.runflare.com/simple django
+
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
